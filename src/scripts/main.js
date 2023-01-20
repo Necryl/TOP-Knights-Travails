@@ -146,6 +146,20 @@ function constructPath(node) {
   return path;
 }
 
-function knightMoves(baseLoc, targetLoc, board) {}
+function knightMoves(baseLoc, targetLoc, board, logToConsole = true) {
+  const baseNode = board[baseLoc];
+  const targetNode = board[targetLoc];
+  const path = search(baseNode, targetNode);
+
+  if (logToConsole) {
+    /* eslint-disable no-console */
+    console.log(`You made it in ${path.length} moves! Here's your path:`);
+    path.forEach((loc) => console.log(JSON.stringify(loc)));
+    /* eslint-enable no-console */
+  }
+  return path;
+}
 
 const board = generateBoard(8, 8);
+
+knightMoves([0, 0], [7, 7], board);
